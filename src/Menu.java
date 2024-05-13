@@ -1,21 +1,23 @@
 import java.util.Scanner;
 
 public class Menu {
+    private Menu() {}
     public static void menu() {
         int opcaoEscolhida;
         Scanner tec = new Scanner(System.in);
 
         while (true) {
-            System.out.println("----------------------");
-            System.out.println("MENU");
-            System.out.println("Escolha uma opção: " +
-                    "\n1- Cadastrar" +
-                    "\n2- Entrar" +
-                    "\n3- Listar" +
-                    "\n4- Editar" +
-                    "\n5- Deletar" +
-                    "\n6- Encerrar sistema");
-            System.out.println("----------------------");
+            System.out.println("""
+                ----------------------
+                MENU
+                Escolha uma opção:
+                1- Cadastrar
+                2- Entrar
+                3- Listar
+                4- Editar
+                5- Deletar
+                6- Encerrar sistema
+                ----------------------""");
             opcaoEscolhida = tec.nextInt();
 
             switch (opcaoEscolhida) {
