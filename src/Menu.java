@@ -33,7 +33,8 @@ public class Menu {
                     break;
                 case 6:
                     System.out.println("Encerrando o sistema...");
-                    return;
+                    System.exit(0);
+                    break;
                 default:
                     System.out.println("Opção inválida. Por favor, escolha novamente.");
                     break;
