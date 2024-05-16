@@ -1,27 +1,28 @@
 package Services;
 
+import Statics.GlobalArray;
+
 import java.util.Scanner;
 
 public class Delete {
-    int arrayIds = Statics.GlobalArray.array[10];
-    int deleteCrud;
-
+    GlobalArray globalArray = new GlobalArray();
     Scanner tec = new Scanner(System.in);
 
     public void delete(){
         System.out.println("Digite o ID do CRUD:");
-        deleteCrud = new tec.nextInt;
+       int deleteCrud = tec.nextInt();
         boolean crudEncontrado = false;
-        for (int i = 0; i < arrayIds.length; i++){
-            if (arrayIds[i] == deleteCrud){
+        for (int i = 0; i <globalArray.idsCruds.size(); i++){
+            if (globalArray.idsCruds.get(i) == deleteCrud) {
                 crudEncontrado = true;
-                System.out.printf("CRUD encontrado! CRUD removido");
-                arrayIds[i] = null;
+                globalArray.idsCruds.remove(i);
+                System.out.println("CRUD encontrado! CRUD removido");
+
+                if (!crudEncontrado) {
+                    System.out.println("ID não encontrado no sistema. Nenhum produto encontrado com esse ID.");
+                }
                 break;
             }
-
         }
-
     }
-
 }

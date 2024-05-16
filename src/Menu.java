@@ -1,8 +1,12 @@
+import Services.Create;
+import Services.Delete;
+
 import java.util.Scanner;
 
 public class Menu {
-    private Menu() {}
     public static void menu() {
+        Create create = new Create();
+        Delete delete = new Delete();
         int opcaoEscolhida;
         Scanner tec = new Scanner(System.in);
 
@@ -22,6 +26,7 @@ public class Menu {
 
             switch (opcaoEscolhida) {
                 case 1:
+                   create.create();
                     break;
                 case 2:
                     break;
@@ -30,6 +35,7 @@ public class Menu {
                 case 4:
                     break;
                 case 5:
+                    delete.delete();
                     break;
                 case 6:
                     System.out.println("Encerrando o sistema...");

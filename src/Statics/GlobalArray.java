@@ -1,6 +1,6 @@
 package Statics;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class GlobalArray {
-    public static int[] array = new int[10];
+  public ArrayList<Integer>idsCruds = new ArrayList<>();
 }
