@@ -1,9 +1,12 @@
 import Services.Create;
 import Services.Delete;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
+    public static ArrayList<String> setoresList = new ArrayList<>();
+    public static ArrayList<Integer> produtosList = new ArrayList<>();
     public static void menu() {
         Create create = new Create();
         Delete delete = new Delete();
@@ -26,7 +29,7 @@ public class Menu {
 
             switch (opcaoEscolhida) {
                 case 1:
-                   create.create();
+                   create.create(setoresList);
                     break;
                 case 2:
                     break;

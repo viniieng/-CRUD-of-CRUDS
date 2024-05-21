@@ -1,7 +1,7 @@
 package Objects;
 
 public class Produto {
-    String nome;
-    double preco;
-    String setor;
+    public String nome;
+    public double preco;
+    public String setor;
 }

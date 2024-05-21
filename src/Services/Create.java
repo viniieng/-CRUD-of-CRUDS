@@ -1,26 +1,29 @@
 package Services;
 
-import Statics.GlobalArray;
+import Objects.Produto;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Create {
-    String nomeCrud;
-    GlobalArray globalArray = new GlobalArray();
     Scanner tec = new Scanner(System.in);
 
-   public void create() {
-       System.out.println("Digite o nome do CRUD:");
+   public void create(ArrayList<String> setoresList ) {
+       System.out.println("--- CADASTRAR ---");
+       Produto produto = new Produto();
+       System.out.println("Digite o nome do produto:");
        tec.nextLine();
-       nomeCrud = tec.next();
-
-       boolean posicaoEncontrada = false;
-       for (int i = 0; i < globalArray.idsCruds.size() && !posicaoEncontrada; i++) {
-           if (globalArray.idsCruds.isEmpty()) {
-               posicaoEncontrada = true;
-               globalArray.idsCruds.add(i);
-               System.out.println("Produto cadastrado no Sistema a posição dele é: " + i);
-           }
+       produto.nome = tec.nextLine();
+       System.out.println("Digite o preço do produto:");
+       tec.nextDouble();
+       produto.preco = tec.nextDouble();
+       System.out.println("Digite o setor do produto:");
+       String setor = tec.nextLine();
+       if (setoresList.contains(setor)) {
+           System.out.println("O setor " + setor + " está presente na lista.");
+       } else {
+           System.out.println("O setor " + setor + " não está presente na lista.");
        }
+
    }
 }
