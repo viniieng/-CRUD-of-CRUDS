@@ -12,7 +12,7 @@ public class Menu {
         Delete delete = new Delete();
         int opcaoEscolhida;
         Scanner tec = new Scanner(System.in);
-
+setoresList.add("weg");
         while (true) {
             System.out.println("""
                 ----------------------
@@ -38,7 +38,7 @@ public class Menu {
                 case 4:
                     break;
                 case 5:
-                    delete.delete();
+                 //   delete.delete();
                     break;
                 case 6:
                     System.out.println("Encerrando o sistema...");
