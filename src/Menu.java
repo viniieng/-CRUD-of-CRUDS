@@ -1,3 +1,4 @@
+import Objects.Produto;
 import Services.Create;
 import Services.Delete;
 
@@ -6,7 +7,7 @@ import java.util.Scanner;
 
 public class Menu {
     public static ArrayList<String> setoresList = new ArrayList<>();
-    public static ArrayList<Integer> produtosList = new ArrayList<>();
+    public static ArrayList<Produto> produtosList = new ArrayList<>();
     public static void menu() {
         Create create = new Create();
         Delete delete = new Delete();
@@ -19,8 +20,8 @@ setoresList.add("weg");
                 MENU
                 Escolha uma opção:
                 1- Cadastrar
-                2- Entrar
-                3- Listar
+                2- Listar produtos
+                3- Listar Setores
                 4- Editar
                 5- Deletar
                 6- Encerrar sistema
@@ -29,7 +30,7 @@ setoresList.add("weg");
 
             switch (opcaoEscolhida) {
                 case 1:
-                   create.create(setoresList);
+                   create.create(setoresList, produtosList);
                     break;
                 case 2:
                     break;
@@ -38,7 +39,7 @@ setoresList.add("weg");
                 case 4:
                     break;
                 case 5:
-                 //   delete.delete();
+                    delete.delete(produtosList);
                     break;
                 case 6:
                     System.out.println("Encerrando o sistema...");
