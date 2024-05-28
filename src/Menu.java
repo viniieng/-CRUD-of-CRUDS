@@ -1,6 +1,7 @@
 import Objects.Produto;
 import Services.Create;
 import Services.Delete;
+import Services.ListProducts;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,6 +12,8 @@ public class Menu {
     public static void menu() {
         Create create = new Create();
         Delete delete = new Delete();
+        ListProducts listProducts = new ListProducts();
+
         int opcaoEscolhida;
         Scanner tec = new Scanner(System.in);
 setoresList.add("weg");
@@ -33,6 +36,7 @@ setoresList.add("weg");
                    create.create(setoresList, produtosList);
                     break;
                 case 2:
+                    ListProducts.listproducts(produtosList);
                     break;
                 case 3:
                     break;

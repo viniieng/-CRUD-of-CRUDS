@@ -1,4 +1,5 @@
 package Services;
+
 import java.util.HashSet;
 import java.util.Random;
 import Objects.Produto;
@@ -21,7 +22,9 @@ public class Create {
         produto.preco = tec.nextDouble();
         System.out.println("Digite o setor do produto:");
         String setor = tec.next();
-        BuscarDados.buscarComDados(setor, setoresList);
+        if(BuscarDados.buscarComDados(setor, setoresList)){
+            produto.setor = setor;
+        }
         produto.id = gerarIdUnico();
         produtosList.add(produto);
         System.out.println("Produto cadastrado no Sistema o ID dele é: " + produto.id);
