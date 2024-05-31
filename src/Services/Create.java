@@ -3,6 +3,7 @@ package Services;
 import java.util.HashSet;
 import java.util.Random;
 import Objects.Produto;
+import Objects.Setores;
 import Utils.BuscarDados;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,7 +12,7 @@ import java.util.Set;
 public class Create {
     private static Set<Integer> idsGerados = new HashSet<>();
 
-    public void create(ArrayList<String> setoresList, ArrayList<Produto> produtosList) {
+    public void create(ArrayList<Setores> setoresList, ArrayList<Produto> produtosList) {
 
         Scanner tec = new Scanner(System.in);
         System.out.println("--- CADASTRAR ---");
@@ -22,8 +23,9 @@ public class Create {
         produto.preco = tec.nextDouble();
         System.out.println("Digite o setor do produto:");
         String setor = tec.next();
-        if(BuscarDados.buscarComDados(setor, setoresList)){
+        if(BuscarDados.buscarComDados(setor, setoresList,produto)){
             produto.setor = setor;
+
         }
         produto.id = gerarIdUnico();
         produtosList.add(produto);

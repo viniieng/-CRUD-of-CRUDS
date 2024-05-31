@@ -3,5 +3,5 @@ import java.util.ArrayList;
 
 public class Setores {
     public String nome;
-    public ArrayList<String> produtos = new ArrayList<>();
+    public ArrayList<Produto> produtos = new ArrayList<>();
 }
