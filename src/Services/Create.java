@@ -2,34 +2,64 @@ package Services;
 
 import java.util.HashSet;
 import java.util.Random;
+
 import Objects.Produto;
 import Objects.Setores;
 import Utils.BuscarDados;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Create {
     private static Set<Integer> idsGerados = new HashSet<>();
+    int opcaoEscolhida;
+    Scanner tec = new Scanner(System.in);
+
 
     public void create(ArrayList<Setores> setoresList, ArrayList<Produto> produtosList) {
 
-        Scanner tec = new Scanner(System.in);
-        System.out.println("--- CADASTRAR ---");
-        Produto produto = new Produto();
-        System.out.println("Digite o nome do produto:");
-        produto.nome = tec.nextLine();
-        System.out.println("Digite o preço do produto:");
-        produto.preco = tec.nextDouble();
-        System.out.println("Digite o setor do produto:");
-        String setor = tec.next();
-        if(BuscarDados.buscarComDados(setor, setoresList,produto)){
-            produto.setor = setor;
+        while (true) {
+            System.out.println("""
+                    ----------------------
+                    MENU
+                    Escolha uma opção:
+                    1- Cadastrar Produto
+                    2- Cadastrar Setor
+                               
+                    ----------------------""");
+            opcaoEscolhida = tec.nextInt();
 
+            switch (opcaoEscolhida) {
+                case 1:
+                    System.out.println("--- CADASTRAR PRODUTO ---");
+                    Produto produto = new Produto();
+                    System.out.println("Digite o nome do produto:");
+                    produto.nome = tec.nextLine();
+                    System.out.println("Digite o preço do produto:");
+                    produto.preco = tec.nextDouble();
+                    System.out.println("Digite o setor do produto:");
+                    String setor = tec.next();
+
+                    if (BuscarDados.buscarComDados(setor, setoresList, produto)) {
+                        produto.setor = setor;
+                        produto.id = gerarIdUnico();
+                        produtosList.add(produto);
+                        System.out.println("Produto cadastrado no Sistema o ID dele é: " + produto.id);
+                    }
+                    break;
+                case 2:
+                    System.out.println("--- CADASTRAR SETOR ---");
+                    Setores setores = new Setores();
+                    System.out.println("Digite o nome do setor:");
+                    setores.nome = tec.nextLine();
+                    setoresList.add(setores);
+                    break;
+                default:
+                    System.out.println("Opção inválida. Por favor, escolha novamente.");
+                    break;
+            }
         }
-        produto.id = gerarIdUnico();
-        produtosList.add(produto);
-        System.out.println("Produto cadastrado no Sistema o ID dele é: " + produto.id);
     }
 
     public static int gerarIdUnico() {
