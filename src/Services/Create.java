@@ -19,7 +19,6 @@ public class Create {
 
     public void create(ArrayList<Setores> setoresList, ArrayList<Produto> produtosList) {
 
-        while (true) {
             System.out.println("""
                     ----------------------
                     MENU
@@ -35,6 +34,7 @@ public class Create {
                     System.out.println("--- CADASTRAR PRODUTO ---");
                     Produto produto = new Produto();
                     System.out.println("Digite o nome do produto:");
+                    tec.nextLine();
                     produto.nome = tec.nextLine();
                     System.out.println("Digite o preço do produto:");
                     produto.preco = tec.nextDouble();
@@ -52,6 +52,7 @@ public class Create {
                     System.out.println("--- CADASTRAR SETOR ---");
                     Setores setores = new Setores();
                     System.out.println("Digite o nome do setor:");
+                    tec.nextLine();
                     setores.nome = tec.nextLine();
                     setoresList.add(setores);
                     break;
@@ -60,7 +61,7 @@ public class Create {
                     break;
             }
         }
-    }
+
 
     public static int gerarIdUnico() {
         int id;
