@@ -46,7 +46,7 @@ public class Edit {
                                 tec.nextLine();
                                 produto.nome = tec.nextLine();
 
-                                System.out.println("Pronto produto editado!");
+                                System.out.println("Nome do produto editado!");
 
                                 break;
 
@@ -55,16 +55,16 @@ public class Edit {
                                 tec.nextDouble();
                                 produto.preco = tec.nextDouble();
 
-                                System.out.println("Pronto produto editado!");
+                                System.out.println("Preço do produto editado!");
 
                                 break;
 
                             case 3:
                                 System.out.println("Digite o novo Setor do Produto");
-                                tec.next();
-                                produto.setor = tec.next();
+                                tec.nextLine();
+                                produto.setor = tec.nextLine();
 
-                                System.out.println("Pronto produto editado!");
+                                System.out.println("Setor do produto editado!");
 
                                 break;
 
