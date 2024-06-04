@@ -12,13 +12,13 @@ public class Edit {
         int opcaoEscolhida;
 
         System.out.println("""
-                    ----------------------
-                    MENU
-                    Escolha uma opção:
-                    1- Editar Produto
-                    2- Editar Setor
-                               
-                    ----------------------""");
+                ----------------------
+                MENU
+                Escolha uma opção:
+                1- Editar Produto
+                2- Editar Setor
+                           
+                ----------------------""");
         opcaoEscolhida = tec.nextInt();
 
         switch (opcaoEscolhida) {
@@ -28,60 +28,64 @@ public class Edit {
                 int idInput = tec.nextInt();
 
                 boolean idEncontrado = false;
-                for (int i = 0; i < produtosList.size(); i++ ){
-                    Produto produto  = produtosList.get(i);
-                    if(produto.id == idInput){
+                for (int i = 0; i < produtosList.size(); i++) {
+                    Produto produto = produtosList.get(i);
+                    if (produto.id == idInput) {
                         idEncontrado = true;
 
 
-                        System.out.println("O que deseja editar: "+
-                                " 1 - Nome "+
-                                " 2 - Preço "+
+                        System.out.println("O que deseja editar: " +
+                                " 1 - Nome " +
+                                " 2 - Preço " +
                                 " 3 - Setor ");
                         int editar = tec.nextInt();
 
-                        switch (editar){
+                        switch (editar) {
                             case 1:
                                 System.out.println("Digite o novo Nome do Produto");
                                 tec.nextLine();
                                 produto.nome = tec.nextLine();
 
                                 System.out.println("Nome do produto editado!");
-
                                 break;
-
                             case 2:
                                 System.out.println("Digite o novo Preço do Produto");
                                 tec.nextDouble();
                                 produto.preco = tec.nextDouble();
 
                                 System.out.println("Preço do produto editado!");
-
                                 break;
-
                             case 3:
+                                for (Setores setores : setoresList) {
+                                    if (setores.nome.equals(produto.setor))
+                                        setores.produtos.remove(produto);
+                                }
                                 System.out.println("Digite o novo Setor do Produto");
                                 tec.nextLine();
-                                produto.setor = tec.nextLine();
-
-                                System.out.println("Setor do produto editado!");
-
+                                String novoSetor = tec.nextLine();
+                                boolean setorEncontrado = false;
+                                for (Setores setores : setoresList) {
+                                    if (setores.nome.equals(novoSetor)) {
+                                        setorEncontrado = true;
+                                        setores.nome = novoSetor;
+                                        System.out.println("Setor do produto editado!");
+                                    }
+                                }
+                                if(!setorEncontrado) {
+                                System.out.println("Setor não existe!");
+                            }
                                 break;
 
                             default:
                                 System.out.println("Opção inválida");
                                 break;
-
-
                         }
-
-
                     }
                 }
-
+                break;
             case 2:
                 System.out.println(" ----- AQUI ESTÁ A LISTA DE SETORES -----");
-                for (Setores  setores : setoresList) {
+                for (Setores setores : setoresList) {
                     System.out.println("-" + setores.nome);
                 }
                 System.out.println("Digite o setor que deseja editar");
@@ -94,12 +98,13 @@ public class Edit {
                         nomeEncontrado = true;
                         System.out.println("Digite o novo nome do setor");
                         setor.nome = tec.nextLine();
+                       // setor.produtos.add(produto); adicionar produtos na lista do setor ainda!!
                         System.out.println("Nome do setor atualizado");
                     } else {
                         System.out.println("Setor não encontrado!!");
                     }
                 }
+                break;
         }
-
     }
 }
