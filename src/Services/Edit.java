@@ -67,7 +67,8 @@ public class Edit {
                                 for (Setores setores : setoresList) {
                                     if (setores.nome.equals(novoSetor)) {
                                         setorEncontrado = true;
-                                        setores.nome = novoSetor;
+                                        setores.produtos.add(produto);
+                                        produto.setor = novoSetor;
                                         System.out.println("Setor do produto editado!");
                                     }
                                 }
@@ -91,18 +92,17 @@ public class Edit {
                 System.out.println("Digite o setor que deseja editar");
                 tec.nextLine();
                 String nomeDigitado = tec.nextLine();
-
                 boolean nomeEncontrado = false;
                 for (Setores setor : setoresList) {
                     if (setor.nome.equals(nomeDigitado)) {
                         nomeEncontrado = true;
                         System.out.println("Digite o novo nome do setor");
                         setor.nome = tec.nextLine();
-                       // setor.produtos.add(produto); adicionar produtos na lista do setor ainda!!
                         System.out.println("Nome do setor atualizado");
-                    } else {
-                        System.out.println("Setor não encontrado!!");
                     }
+                }
+                if(!nomeEncontrado) {
+                    System.out.println("Setor não existe");
                 }
                 break;
         }
