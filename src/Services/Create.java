@@ -8,6 +8,7 @@ import Objects.Setores;
 import Utils.BuscarDados;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -16,30 +17,32 @@ public class Create {
     int opcaoEscolhida;
     Scanner tec = new Scanner(System.in);
 
-
     public void create(ArrayList<Setores> setoresList, ArrayList<Produto> produtosList) {
 
-            System.out.println("""
-                    ----------------------
-                    MENU
-                    Escolha uma opção:
-                    1- Cadastrar Produto
-                    2- Cadastrar Setor
+        System.out.println("""
+                ----------------------
+                MENU
+                Escolha uma opção:
+                1- Cadastrar Produto
+                2- Cadastrar Setor
                                
-                    ----------------------""");
-            opcaoEscolhida = tec.nextInt();
+                ----------------------""");
+        opcaoEscolhida = tec.nextInt();
 
-            switch (opcaoEscolhida) {
-                case 1:
-                    System.out.println("--- CADASTRAR PRODUTO ---");
-                    Produto produto = new Produto();
-                    System.out.println("Digite o nome do produto:");
-                    tec.nextLine();
-                    produto.nome = tec.nextLine();
-                    System.out.println("Digite o preço do produto:");
+        switch (opcaoEscolhida) {
+            case 1:
+                System.out.println("--- CADASTRAR PRODUTO ---");
+                Produto produto = new Produto();
+                System.out.println("Digite o nome do produto:");
+                tec.nextLine();
+                produto.nome = tec.nextLine();
+
+                System.out.println("Digite o preço do produto:");
+                try {
                     produto.preco = tec.nextDouble();
                     System.out.println("Digite o setor do produto:");
-                    String setor = tec.next();
+                    tec.nextLine();
+                    String setor = tec.nextLine();
 
                     if (BuscarDados.buscarComDados(setor, setoresList, produto)) {
                         produto.setor = setor;
@@ -47,21 +50,24 @@ public class Create {
                         produtosList.add(produto);
                         System.out.println("Produto cadastrado no Sistema o ID dele é: " + produto.id);
                     }
-                    break;
-                case 2:
-                    System.out.println("--- CADASTRAR SETOR ---");
-                    Setores setores = new Setores();
-                    System.out.println("Digite o nome do setor:");
+                } catch (InputMismatchException e) {
+                    System.out.println("Escrita errada. O preço deve ser um número.");
                     tec.nextLine();
-                    setores.nome = tec.nextLine();
-                    setoresList.add(setores);
-                    break;
-                default:
-                    System.out.println("Opção inválida. Por favor, escolha novamente.");
-                    break;
-            }
+                }
+                break;
+            case 2:
+                System.out.println("--- CADASTRAR SETOR ---");
+                Setores setores = new Setores();
+                System.out.println("Digite o nome do setor:");
+                tec.nextLine();  // Consumir a nova linha pendente
+                setores.nome = tec.nextLine();
+                setoresList.add(setores);
+                break;
+            default:
+                System.out.println("Opção inválida. Por favor, escolha novamente.");
+                break;
         }
-
+    }
 
     public static int gerarIdUnico() {
         int id;
