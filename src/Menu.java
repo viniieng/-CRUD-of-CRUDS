@@ -2,6 +2,7 @@ import Objects.Produto;
 import Objects.Setores;
 import Services.Create;
 import Services.Delete;
+import Services.Edit;
 import Services.ListProducts;
 import Services.ListSector;
 
@@ -47,6 +48,7 @@ public class Menu {
                     ListSector.listsector(setoresList);
                     break;
                 case 4:
+                    Edit.edit(setoresList, produtosList);
                     break;
                 case 5:
                     delete.delete(produtosList);
