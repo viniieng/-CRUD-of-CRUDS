@@ -83,6 +83,9 @@ public class Edit {
                         }
                     }
                 }
+                if(!idEncontrado) {
+                    System.out.println("Id não encontrado!");
+                }
                 break;
             case 2:
                 System.out.println(" ----- AQUI ESTÁ A LISTA DE SETORES -----");
