@@ -19,10 +19,6 @@ public class Menu {
         int opcaoEscolhida;
         Scanner tec = new Scanner(System.in);
 
-        Setores tempSetor = new Setores();
-        tempSetor.nome = "weg";
-        setoresList.add(tempSetor);
-
         while (true) {
             System.out.println("""
                 ----------------------
