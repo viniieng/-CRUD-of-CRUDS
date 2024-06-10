@@ -50,7 +50,7 @@ public class Edit {
                                 break;
                             case 2:
                                 System.out.println("Digite o novo Preço do Produto");
-                                tec.nextDouble();
+                                tec.nextLine();
                                 produto.preco = tec.nextDouble();
 
                                 System.out.println("Preço do produto editado!");
