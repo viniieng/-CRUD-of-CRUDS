@@ -73,7 +73,7 @@ public class Create {
                 System.out.println("--- CADASTRAR SETOR ---");
                 Setores setores = new Setores();
                 System.out.println("Digite o nome do setor:");
-                tec.nextLine();  // Consumir a nova linha pendente
+                tec.nextLine();
                 setores.nome = tec.nextLine();
                 setoresList.add(setores);
                 break;
