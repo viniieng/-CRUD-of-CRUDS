@@ -2,15 +2,14 @@ package Services;
 
 import java.util.HashSet;
 import java.util.Random;
-
-import Objects.Produto;
-import Objects.Setores;
-import Utils.BuscarDados;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
+
+import Objects.Produto;
+import Objects.Setores;
+import Utils.BuscarDados;
 
 public class Create {
     private static Set<Integer> idsGerados = new HashSet<>();
@@ -33,25 +32,40 @@ public class Create {
             case 1:
                 System.out.println("--- CADASTRAR PRODUTO ---");
                 Produto produto = new Produto();
-                System.out.println("Digite o nome do produto:");
-                tec.nextLine();
-                produto.nome = tec.nextLine();
-
-                System.out.println("Digite o preço do produto:");
                 try {
-                    produto.preco = tec.nextDouble();
-                    System.out.println("Digite o setor do produto:");
+                    System.out.println("Digite o nome do produto:");
                     tec.nextLine();
-                    String setor = tec.nextLine();
+                    String nomeProduto = tec.nextLine();
 
-                    if (BuscarDados.buscarComDados(setor, setoresList, produto)) {
-                        produto.setor = setor;
-                        produto.id = gerarIdUnico();
-                        produtosList.add(produto);
-                        System.out.println("Produto cadastrado no Sistema o ID dele é: " + produto.id);
+                    boolean produtoExistente = false;
+                    for (Produto product : produtosList) {
+                        if (product.nome.equals(nomeProduto)) {
+                            produtoExistente = true;
+                            break;
+                        }
+                    }
+
+                    if (produtoExistente) {
+                        System.out.println("Erro: Produto já existe na lista.");
+                    } else {
+                        produto.nome = nomeProduto;
+
+                        System.out.println("Digite o preço do produto:");
+                        produto.preco = tec.nextDouble();
+                        tec.nextLine();
+
+                        System.out.println("Digite o setor do produto:");
+                        String setor = tec.nextLine();
+
+                        if (BuscarDados.buscarComDados(setor, setoresList, produto)) {
+                            produto.setor = setor;
+                            produto.id = gerarIdUnico();
+                            produtosList.add(produto);
+                            System.out.println("Produto cadastrado no Sistema o ID dele é: " + produto.id);
+                        }
                     }
                 } catch (InputMismatchException e) {
-                    System.out.println("Escrita errada. O preço deve ser um número.");
+                    System.out.println("Erro: Entrada inválida. Certifique-se de inserir um preço válido.");
                     tec.nextLine();
                 }
                 break;
