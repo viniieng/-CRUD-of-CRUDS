@@ -19,8 +19,6 @@ public class BuscarDados {
         }
         if (encontrado) {
             System.out.println("Produto adicionado ao setor " + setorDigitado);
-        } else {
-            System.out.println("O setor " + setorDigitado + " não foi encontrado na lista!");
         }
         return encontrado;
     }

@@ -62,6 +62,16 @@ public class Create {
                             produto.id = gerarIdUnico();
                             produtosList.add(produto);
                             System.out.println("Produto cadastrado no Sistema o ID dele é: " + produto.id);
+                        } else {
+                            Setores newSetor = new Setores();
+                            newSetor.nome = setor;
+                            produto.setor = setor;
+                            produto.id = gerarIdUnico();
+                            produtosList.add(produto);
+                            newSetor.produtos.add(produto);
+                            setoresList.add(newSetor);
+                            System.out.println("Setor " + setor + " criado no Sistema!!");
+                            System.out.println("Produto cadastrado no Sistema o ID dele é: " + produto.id);
                         }
                     }
                 } catch (InputMismatchException e) {

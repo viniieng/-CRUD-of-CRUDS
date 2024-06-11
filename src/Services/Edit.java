@@ -73,7 +73,12 @@ public class Edit {
                                     }
                                 }
                                 if(!setorEncontrado) {
-                                System.out.println("Setor não existe!");
+                                    Setores newSetor = new Setores();
+                                    newSetor.nome = novoSetor;
+                                    produto.setor = novoSetor;
+                                    newSetor.produtos.add(produto);
+                                    setoresList.add(newSetor);
+                                    System.out.println("Setor " + novoSetor + " criado no Sistema!!");
                             }
                                 break;
 
@@ -105,7 +110,7 @@ public class Edit {
                     }
                 }
                 if(!nomeEncontrado) {
-                    System.out.println("Setor não existe");
+                    System.out.println("Setor não existe no Sistema!!");
                 }
                 break;
         }
