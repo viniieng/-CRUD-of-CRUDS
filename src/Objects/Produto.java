@@ -4,4 +4,5 @@ public class Produto {
     public double preco;
     public int id;
     public String setor;
+    public double quantidade;
 }
