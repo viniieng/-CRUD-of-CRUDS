@@ -17,7 +17,6 @@ public class Create {
     Scanner tec = new Scanner(System.in);
 
     public void create(ArrayList<Setores> setoresList, ArrayList<Produto> produtosList) {
-
         System.out.println("""
                 ----------------------
                 MENU
@@ -31,49 +30,53 @@ public class Create {
         switch (opcaoEscolhida) {
             case 1:
                 System.out.println("--- CADASTRAR PRODUTO ---");
-                Produto produto = new Produto();
                 try {
-                    System.out.println("Digite o nome do produto:");
                     tec.nextLine();
+
+                    System.out.println("Digite o nome do produto:");
                     String nomeProduto = tec.nextLine();
 
                     boolean produtoExistente = false;
                     for (Produto product : produtosList) {
-                        if (product.nome.equals(nomeProduto)) {
+                        if (product.nome.equalsIgnoreCase(nomeProduto)) {
                             produtoExistente = true;
+                            product.quantidade++;
+                            System.out.println("Produto " + product.nome + " existente no sistema, adicionado 1 à quantidade... Quantidade em estoque: " + product.quantidade);
                             break;
                         }
                     }
 
-                    if (produtoExistente) {
-                        System.out.println("Erro: Produto já existe na lista.");
-                    } else {
-                        produto.nome = nomeProduto;
+                    if (!produtoExistente) {
+                        Produto novoProduto = new Produto();
+                        novoProduto.nome = nomeProduto;
 
                         System.out.println("Digite o preço do produto:");
-                        produto.preco = tec.nextDouble();
+                        novoProduto.preco = tec.nextDouble();
+                        tec.nextLine();
+
+                        System.out.println("Digite a quantidade em estoque do produto: ");
+                        novoProduto.quantidade = tec.nextInt();
                         tec.nextLine();
 
                         System.out.println("Digite o setor do produto:");
                         String setor = tec.nextLine();
 
-                        if (BuscarDados.buscarComDados(setor, setoresList, produto)) {
-                            produto.setor = setor;
-                            produto.id = gerarIdUnico();
-                            produtosList.add(produto);
-                            System.out.println("Produto cadastrado no Sistema o ID dele é: " + produto.id);
+                        if (BuscarDados.buscarComDados(setor, setoresList, novoProduto)) {
+                            novoProduto.setor = setor;
                         } else {
                             Setores newSetor = new Setores();
                             newSetor.nome = setor;
-                            produto.setor = setor;
-                            produto.id = gerarIdUnico();
-                            produtosList.add(produto);
-                            newSetor.produtos.add(produto);
                             setoresList.add(newSetor);
-                            System.out.println("Setor " + setor + " criado no Sistema!!");
-                            System.out.println("Produto cadastrado no Sistema o ID dele é: " + produto.id);
+                            novoProduto.setor = setor;
                         }
+
+
+
+                        novoProduto.id = gerarIdUnico();
+                        produtosList.add(novoProduto);
+                        System.out.println("Produto cadastrado no sistema. ID dele é: " + novoProduto.id);
                     }
+
                 } catch (InputMismatchException e) {
                     System.out.println("Erro: Entrada inválida. Certifique-se de inserir um preço válido.");
                     tec.nextLine();
@@ -81,11 +84,13 @@ public class Create {
                 break;
             case 2:
                 System.out.println("--- CADASTRAR SETOR ---");
-                Setores setores = new Setores();
-                System.out.println("Digite o nome do setor:");
                 tec.nextLine();
-                setores.nome = tec.nextLine();
-                setoresList.add(setores);
+                System.out.println("Digite o nome do setor:");
+                String nomeSetor = tec.nextLine();
+                Setores setor = new Setores();
+                setor.nome = nomeSetor;
+                setoresList.add(setor);
+                System.out.println("Setor cadastrado no sistema.");
                 break;
             default:
                 System.out.println("Opção inválida. Por favor, escolha novamente.");
