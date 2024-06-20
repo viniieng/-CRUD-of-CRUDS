@@ -42,6 +42,7 @@ public class Create {
                             produtoExistente = true;
                             product.quantidade++;
                             System.out.println("Produto " + product.nome + " existente no sistema, adicionado 1 à quantidade... Quantidade em estoque: " + product.quantidade);
+                            product.capital = product.preco * product.quantidade;
                             break;
                         }
                     }
@@ -70,7 +71,7 @@ public class Create {
                             novoProduto.setor = setor;
                         }
 
-
+                        novoProduto.capital = novoProduto.preco * novoProduto.quantidade;
 
                         novoProduto.id = gerarIdUnico();
                         produtosList.add(novoProduto);

@@ -5,4 +5,6 @@ public class Produto {
     public int id;
     public String setor;
     public int quantidade = 0;
+
+    public double capital;
 }

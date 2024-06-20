@@ -52,7 +52,7 @@ public class Edit {
                                 System.out.println("Digite o novo Preço do Produto");
                                 tec.nextLine();
                                 produto.preco = tec.nextDouble();
-
+                                produto.capital = produto.preco * produto.quantidade;
                                 System.out.println("Preço do produto editado!");
                                 break;
                             case 3:
