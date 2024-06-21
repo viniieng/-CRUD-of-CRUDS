@@ -16,15 +16,15 @@ public class Create {
     int opcaoEscolhida;
     Scanner tec = new Scanner(System.in);
 
-    public void create(ArrayList<Setores> setoresList, ArrayList<Produto> produtosList) {
+    public double create(ArrayList<Setores> setoresList, ArrayList<Produto> produtosList, double capitalTotal) {
         System.out.println("""
-                ----------------------
-                MENU
-                Escolha uma opção:
-                1- Cadastrar Produto
-                2- Cadastrar Setor
-                               
-                ----------------------""");
+            ----------------------
+            MENU
+            Escolha uma opção:
+            1- Cadastrar Produto
+            2- Cadastrar Setor
+                           
+            ----------------------""");
         opcaoEscolhida = tec.nextInt();
 
         switch (opcaoEscolhida) {
@@ -40,9 +40,11 @@ public class Create {
                     for (Produto product : produtosList) {
                         if (product.nome.equalsIgnoreCase(nomeProduto)) {
                             produtoExistente = true;
+                            capitalTotal -= product.capital;
                             product.quantidade++;
                             System.out.println("Produto " + product.nome + " existente no sistema, adicionado 1 à quantidade... Quantidade em estoque: " + product.quantidade);
                             product.capital = product.preco * product.quantidade;
+                            capitalTotal += product.capital;
                             break;
                         }
                     }
@@ -69,9 +71,11 @@ public class Create {
                             newSetor.nome = setor;
                             setoresList.add(newSetor);
                             novoProduto.setor = setor;
+                            newSetor.produtos.add(novoProduto);
                         }
 
                         novoProduto.capital = novoProduto.preco * novoProduto.quantidade;
+                        capitalTotal += novoProduto.capital;
 
                         novoProduto.id = gerarIdUnico();
                         produtosList.add(novoProduto);
@@ -97,8 +101,8 @@ public class Create {
                 System.out.println("Opção inválida. Por favor, escolha novamente.");
                 break;
         }
+        return capitalTotal;
     }
-
     public static int gerarIdUnico() {
         int id;
         Random random = new Random();

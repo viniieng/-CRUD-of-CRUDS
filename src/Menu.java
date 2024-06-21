@@ -16,6 +16,8 @@ public class Menu {
         Create create = new Create();
         Delete delete = new Delete();
 
+        double capitalTotal = 0;
+
         int opcaoEscolhida;
         Scanner tec = new Scanner(System.in);
 
@@ -35,10 +37,10 @@ public class Menu {
 
             switch (opcaoEscolhida) {
                 case 1:
-                   create.create(setoresList, produtosList);
+                    capitalTotal = create.create(setoresList, produtosList, capitalTotal);
                     break;
                 case 2:
-                    ListProducts.listproducts(produtosList);
+                    ListProducts.listproducts(produtosList, capitalTotal);
                     break;
                 case 3:
                     ListSector.listsector(setoresList);
@@ -47,7 +49,7 @@ public class Menu {
                     Edit.edit(setoresList, produtosList);
                     break;
                 case 5:
-                    delete.delete(produtosList);
+                    capitalTotal = delete.delete(produtosList, capitalTotal);
                     break;
                 case 6:
                     System.out.println("Encerrando o sistema...");
